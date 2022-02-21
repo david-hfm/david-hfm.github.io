@@ -69,7 +69,7 @@ body {
   align-items: baseline;
   width: 100%;
   padding: 1vw;
-  position: fixed;
+  position: stiky;
   bottom: 0;
 }
 
