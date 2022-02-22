@@ -1,0 +1,29 @@
+@import url("variaveis_css.css");
+
+.mensagemErro {
+  background-color: red;
+  width: 50%;
+  padding: 1vw;
+  color: white;
+}
+
+.mensagemResultado {
+  width: 50%;
+  padding: 1vw;
+  color: var(--custom-blue);
+}
+
+.inputNumerico {
+  max-width: 80%;
+  margin: 1vw 0;
+  border-color: var(--custom-orange);
+}
+
+.botao {
+  margin: 1vw 0;
+  font-weight: bold;
+  color: white;
+  background-color: var(--custom-blue);
+  border-radius: 5px;
+  padding: 1vw;
+}

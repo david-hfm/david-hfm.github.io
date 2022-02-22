@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<link rel="stylesheet" href="styles.css">
+<link rel="stylesheet" href="projetos.css">
+<title>David H F Moura</title>
+</head>
+
+<body>
+<header class="headerPrincipal">
+<img class="fotoPerfil" src="foto_perfil.jpeg" alt="foto de perfil">
+<h1 class="tituloHeaderPrincipal">David H. F. Moura</h1>
+<nav class="navHeaderPrincipal">
+<a href="index.html">Home</a>
+<a href="projetos.html">Projetos</a>
+</nav>
+</header>
+<section class="conteudoSection">
+
+<section>
+<h1 class="tituloSobre">Conversor de Binário para Decimal</h1>
+<p id="erroBinarioParaDecimal" class="mensagemErro" style="display:none;"></p>
+<p>Insira um valor binário no campo:</p>
+<input id="inputBinarioParaDecimal" class="inputNumerico" type="text" pattern="[01]+" style="display:block;">
+<p id="resultadoBinarioParaDecimal" class="mensagemResultado" style="display:none;"></p>
+<input type="button" class="botao" value="Converter" onclick="converterBinarioParaDecimal()">
+</section>
+
+</section>
+<footer class="footerPrincipal">
+<span>David H. F. Moura</span>
+<address>
+<a href="https://www.linkedin.com/in/davidhfmoura">LinkedIn @davidhfmoura</a> <br>
+<a href="https://github.com/davidhfm">GitHub @davidhfm</a>
+</address>
+</footer>
+<script src="binario_para_decimal.js"></script>
+<script>
+function converterBinarioParaDecimal() {
+  let input = document.getElementById("inputBinarioParaDecimal");
+  let erro = document.getElementById("erroBinarioParaDecimal");
+  let resultado = document.getElementById("resultadoBinarioParaDecimal");
+  if (!input.checkValidity()) {
+    erro.innerHTML = "Use apenas 1 e 0.";
+    erro.style.display = "block";
+    resultado.style.display = "none";
+  }
+  else {
+    resultado.innerHTML = "Decimal: " + binarioParaDecimal(input.value);
+    erro.style.display = "none";
+    resultado.style.display = "block";
+  }
+}
+</script>
+</body>
+</html>
