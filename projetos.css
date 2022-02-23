@@ -27,3 +27,14 @@
   border-radius: 5px;
   padding: 1vw;
 }
+
+.quadradoVisualizadorBorda {
+  border: 10px solid var(--custom-blue);
+  width: 40vw;
+  height: 30vw;
+  margin-bottom: 2vw;
+}
+
+.visualizadorBorderSection {
+  display: flex;
+}

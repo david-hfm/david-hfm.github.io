@@ -28,6 +28,65 @@
 <input type="button" class="botao" value="Converter" onclick="converterBinarioParaDecimal()">
 </section>
 
+<section>
+<h1 class="tituloSobre">Visualizador de Borda</h1>
+<div id="quadradoVisualizadorBorda" class="quadradoVisualizadorBorda">
+</div>
+<label for="containerBorderRadiusRange">border-radius:</label>
+<div id="containerBorderRadiusRange">
+  <div>
+  <label for="borderRadiusRange">Quatro cantos: </label>
+  <input id="borderRadiusRange" type="range" min="0" max="50" value="0" onchange="atualizarBorderRadius(0)">
+  <span id="valorBorderRadiusRange">0%</span>
+  </div>
+  <div>
+  <label for="borderRadiusRangeTopLeft">Top left: </label>
+  <input id="borderRadiusRangeTopLeft" type="range" min="0" max="100" value="0" onchange="atualizarBorderRadius(1)">
+  <span id="valorBorderRadiusRangeTopLeft">0%</span>
+  </div>
+  <div>
+  <label for="borderRadiusRangeTopRight">Top right: </label>
+  <input id="borderRadiusRangeTopRight" type="range" min="0" max="100" value="0" onchange="atualizarBorderRadius(2)">
+  <span id="valorBorderRadiusRangeTopRight">0%</span>
+  </div>
+  <div>
+  <label for="borderRadiusRangeBottomLeft">Bottom left: </label>
+  <input id="borderRadiusRangeBottomLeft" type="range" min="0" max="100" value="0" onchange="atualizarBorderRadius(3)">
+  <span id="valorBorderRadiusRangeBottomLeft">0%</span>
+  </div>
+  <div>
+  <label for="borderRadiusRangeBottomRight">Bottom right: </label>
+  <input id="borderRadiusRangeBottomRight" type="range" min="0" max="100" value="0" onchange="atualizarBorderRadius(4)">
+  <span id="valorBorderRadiusRangeBottomRight">0%</span>
+  </div>
+</div>
+<div>
+<label for="borderStyleSelect">Tipo de borda:</label>
+<select id="borderStyleSelect" onchange="atualizarBorderStyle()">
+  <option value="solid">solid</option>
+  <option value="dotted">dotted</option>
+  <option value="dashed">dashed</option>
+  <option value="double">double</option>
+  <option value="groove">groove</option>
+  <option value="ridge">ridge</option>
+  <option value="inset">inset</option>
+  <option value="outset">outset</option>
+  <option value="none">none</option>
+  <option value="hidden">hidden</option>
+</select>
+</div>
+<div>
+<label for="larguraBordaVisualizadorBorda">Largura da borda:</label>
+<input id="larguraBordaVisualizadorBorda" type="range" min="1" max="20" value="10" onchange="atualizarBorderWidth()">
+<span id="valorlarguraBordaVisualizadorBorda">10px</span>
+</div>
+<div>
+<label for="corBordaVisualizadorBorda">Cor da borda:</label>
+<input id="corBordaVisualizadorBorda" type="color" value="#0FA3B1" onchange="atualizarBorderColor()">
+</div>
+<input class="botao" type="button" value="Copiar CSS" onclick="copiarCSSVisualizadorBorda()">
+</section>
+
 </section>
 <footer class="footerPrincipal">
 <span>David H. F. Moura</span>
@@ -52,6 +111,97 @@ function converterBinarioParaDecimal() {
     erro.style.display = "none";
     resultado.style.display = "block";
   }
+}
+
+function atualizarBorderRadius(posicao) {
+  let quadrado = document.getElementById("quadradoVisualizadorBorda");
+  let valor = 0;
+  switch (posicao) {
+    case 0:
+      valor = document.getElementById("borderRadiusRange").value + "%";
+      quadrado.style.borderRadius = valor;
+      document.getElementById("valorBorderRadiusRange").innerHTML = valor;
+      resetarBorderRadiusRange();
+      break;
+    case 1:
+      valor = document.getElementById("borderRadiusRangeTopLeft").value + "%";
+      quadrado.style.borderTopLeftRadius = valor;
+      document.getElementById("valorBorderRadiusRangeTopLeft").innerHTML = 
+      valor;
+      break;
+    case 2:
+      valor = document.getElementById("borderRadiusRangeTopRight").value + "%";
+      quadrado.style.borderTopRightRadius = valor;
+      document.getElementById("valorBorderRadiusRangeTopRight").innerHTML = 
+      valor;
+      break;
+    case 3:
+      valor = document.getElementById("borderRadiusRangeBottomLeft").value + 
+      "%";
+      quadrado.style.borderBottomLeftRadius = valor;
+      document.getElementById("valorBorderRadiusRangeBottomLeft").innerHTML = 
+      valor;
+      break;
+    case 4:
+      valor = document.getElementById("borderRadiusRangeBottomRight").value + 
+      "%";
+      quadrado.style.borderBottomRightRadius = valor;
+      document.getElementById("valorBorderRadiusRangeBottomRight").innerHTML = 
+      valor;
+      break;
+  }
+}
+
+function resetarBorderRadiusRange() {
+  document.getElementById("borderRadiusRangeTopLeft").value = "0";
+  document.getElementById("borderRadiusRangeTopRight").value = "0";
+  document.getElementById("borderRadiusRangeBottomLeft").value = "0";
+  document.getElementById("borderRadiusRangeBottomRight").value = "0";
+  document.getElementById("valorBorderRadiusRangeTopLeft").innerHTML = "0%";
+  document.getElementById("valorBorderRadiusRangeTopRight").innerHTML = "0%";
+  document.getElementById("valorBorderRadiusRangeBottomLeft").innerHTML = "0%";
+  document.getElementById("valorBorderRadiusRangeBottomRight").innerHTML = "0%";
+}
+
+function atualizarBorderWidth() {
+  let valor = document.getElementById("larguraBordaVisualizadorBorda").value + "px";
+  let quadrado = document.getElementById("quadradoVisualizadorBorda");
+  quadrado.style.borderWidth = valor;
+  document.getElementById("valorlarguraBordaVisualizadorBorda").innerHTML = valor;
+}
+
+function atualizarBorderStyle() {
+  let quadrado = document.getElementById("quadradoVisualizadorBorda");
+  quadrado.style.borderStyle = 
+  document.getElementById("borderStyleSelect").value;
+}
+
+function atualizarBorderColor() {
+  let quadrado = document.getElementById("quadradoVisualizadorBorda");
+  quadrado.style.borderColor = 
+  document.getElementById("corBordaVisualizadorBorda").value;
+}
+
+function copiarCSSVisualizadorBorda() {
+  let range = document.getElementById("borderRadiusRange").value;
+  let topLeft = document.getElementById("borderRadiusRangeTopLeft").value;
+  let topRight = document.getElementById("borderRadiusRangeTopRight").value;
+  let bottomLeft = document.getElementById("borderRadiusRangeBottomLeft").value;
+  let bottomRight = document.getElementById("borderRadiusRangeBottomRight").value;
+  let largura = document.getElementById("larguraBordaVisualizadorBorda").value;
+  let style = document.getElementById("borderStyleSelect").value;
+  let cor = document.getElementById("corBordaVisualizadorBorda").value;
+  let css = "{ ";
+  css += (range === "0") ? "" : "border-radius: " + range + "%; ";
+  css += (topLeft === "0") ? "" : "border-top-left-radius: " + topLeft + "%; ";
+  css += (topRight === "0") ? "" : "border-top-right-radius: " + topRight + "%; ";
+  css += (bottomLeft === "0") ? "" : "border-bottom-left-radius: " + bottomLeft + "%; ";
+  css += (bottomRight === "0") ? "" : "border-bottom-right-radius: " + bottomRight + "%; ";
+  css += "border-style: " + style + "; ";
+  css += "border-width: " + largura + "px; ";
+  css += "border-color: " + cor + ";";
+  css += " }";
+  navigator.clipboard.writeText(css);
 }
 </script>
 </body>
