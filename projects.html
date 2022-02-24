@@ -1,0 +1,202 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<link rel="stylesheet" type="text/css" href="css/styles.css">
+<link rel="stylesheet" type="text/css" href="css/projects_styles.css">
+<title>David H F Moura</title>
+</head>
+
+<body>
+<header class="main-header">
+<img class="main-header-image" src="images/main_header_image.jpeg" alt="foto de perfil">
+<h1 class="main-header-title">David H. F. Moura</h1>
+<nav class="main-header-nav">
+<a href="index.html">Home</a>
+<a href="projects.html">Projetos</a>
+</nav>
+</header>
+<section class="main-section">
+
+<section>
+<h1 class="sub-section-title">Conversor de Binário para Decimal</h1>
+<p id="error-message-p" class="error" style="display:none;"></p>
+<p>Insira um valor binário no campo:</p>
+<input id="decimal-value-text" class="sub-section__input--text" type="text" pattern="[01]+" style="display:block;">
+<p id="result-p" class="success" style="display:none;"></p>
+<input type="button" class="sub-section__input--button" value="Converter" onclick="convertBinaryToDecimal()">
+</section>
+
+<section>
+<h1 class="sub-section-title">Visualizador de Borda</h1>
+<div id="rectangle" class="rectangle">
+</div>
+<label for="containerborder-radius-range">Border-radius:</label>
+<div id="containerborder-radius-range">
+  <div>
+  <label for="border-radius-range">Quatro cantos: </label>
+  <input id="border-radius-range" type="range" min="0" max="50" value="0" onchange="updateBorderRadius(0)">
+  <span id="value-span-border-radius-range">0%</span>
+  </div>
+  <div>
+  <label for="border-top-left-radius-range">Top left: </label>
+  <input id="border-top-left-radius-range" type="range" min="0" max="100" value="0" onchange="updateBorderRadius(1)">
+  <span id="value-span-border-top-left-radius-range">0%</span>
+  </div>
+  <div>
+  <label for="border-top-right-radius-range">Top right: </label>
+  <input id="border-top-right-radius-range" type="range" min="0" max="100" value="0" onchange="updateBorderRadius(2)">
+  <span id="value-span-border-top-right-radius-range">0%</span>
+  </div>
+  <div>
+  <label for="border-bottom-left-radius-range">Bottom left: </label>
+  <input id="border-bottom-left-radius-range" type="range" min="0" max="100" value="0" onchange="updateBorderRadius(3)">
+  <span id="value-span-border-bottom-left-radius-range">0%</span>
+  </div>
+  <div>
+  <label for="border-bottom-right-radius-range">Bottom right: </label>
+  <input id="border-bottom-right-radius-range" type="range" min="0" max="100" value="0" onchange="updateBorderRadius(4)">
+  <span id="value-span-border-bottom-right-radius-range">0%</span>
+  </div>
+</div>
+<div>
+<label for="border-style-select">Border-style:</label>
+<select id="border-style-select" onchange="updateBorderStyle()">
+  <option value="solid">solid</option>
+  <option value="dotted">dotted</option>
+  <option value="dashed">dashed</option>
+  <option value="double">double</option>
+  <option value="groove">groove</option>
+  <option value="ridge">ridge</option>
+  <option value="inset">inset</option>
+  <option value="outset">outset</option>
+  <option value="none">none</option>
+  <option value="hidden">hidden</option>
+</select>
+</div>
+<div>
+<label for="border-width-range">Border-width:</label>
+<input id="border-width-range" type="range" min="1" max="20" value="10" onchange="updateBorderWidth()">
+<span id="value-span-border-width-range">10px</span>
+</div>
+<div>
+<label for="border-color-color">Border-color:</label>
+<input id="border-color-color" type="color" value="#0FA3B1" onchange="updateBorderColor()">
+</div>
+<input class="sub-section__input--button" type="button" value="Copiar CSS" onclick="copyCSSRectangleToClipboard()">
+</section>
+
+</section>
+<footer class="main-footer">
+<span>David H. F. Moura</span>
+<address class="main-footer-address">
+<a href="https://www.linkedin.com/in/davidhfmoura">LinkedIn @davidhfmoura</a> <br>
+<a href="https://github.com/davidhfm">GitHub @davidhfm</a>
+</address>
+</footer>
+<script src="js/binary_to_decimal.js"></script>
+<script>
+function convertBinaryToDecimal() {
+  let input = document.getElementById("decimal-value-text");
+  let error = document.getElementById("error-message-p");
+  let result = document.getElementById("result-p");
+  if (!input.checkValidity()) {
+    error.innerHTML = "Use apenas 1 e 0.";
+    error.style.display = "block";
+    result.style.display = "none";
+  }
+  else {
+    result.innerHTML = "Decimal: " + binaryToDecimal(input.value);
+    error.style.display = "none";
+    result.style.display = "block";
+  }
+}
+
+function updateBorderRadius(position) {
+  let rectangle = document.getElementById("rectangle");
+  let value = 0;
+  switch (position) {
+    case 0:
+      value = document.getElementById("border-radius-range").value + "%";
+      rectangle.style.borderRadius = value;
+      document.getElementById("value-span-border-radius-range").innerHTML = value;
+      resetBorderRadiusRange();
+      break;
+    case 1:
+      value = document.getElementById("border-top-left-radius-range").value + "%";
+      rectangle.style.borderTopLeftRadius = value;
+      document.getElementById("value-span-border-top-left-radius-range").innerHTML = value;
+      break;
+    case 2:
+      value = document.getElementById("border-top-right-radius-range").value + "%";
+      rectangle.style.borderTopRightRadius = value;
+      document.getElementById("value-span-border-top-right-radius-range").innerHTML = value;
+      break;
+    case 3:
+      value = document.getElementById("border-bottom-left-radius-range").value + "%";
+      rectangle.style.borderBottomLeftRadius = value;
+      document.getElementById("value-span-border-bottom-left-radius-range").innerHTML = value;
+      break;
+    case 4:
+      value = document.getElementById("border-bottom-right-radius-range").value + "%";
+      rectangle.style.borderBottomRightRadius = value;
+      document.getElementById("value-span-border-bottom-right-radius-range").innerHTML = value;
+      break;
+  }
+}
+
+function resetBorderRadiusRange() {
+  document.getElementById("border-top-left-radius-range").value = "0";
+  document.getElementById("border-top-right-radius-range").value = "0";
+  document.getElementById("border-bottom-left-radius-range").value = "0";
+  document.getElementById("border-bottom-right-radius-range").value = "0";
+  document.getElementById("value-span-border-top-left-radius-range").innerHTML = "0%";
+  document.getElementById("value-span-border-top-right-radius-range").innerHTML = "0%";
+  document.getElementById("value-span-border-bottom-left-radius-range").innerHTML = "0%";
+  document.getElementById("value-span-border-bottom-right-radius-range").innerHTML = "0%";
+}
+
+function updateBorderWidth() {
+  let value = document.getElementById("border-width-range").value + "px";
+  let rectangle = document.getElementById("rectangle");
+  rectangle.style.borderWidth = value;
+  document.getElementById("value-span-border-width-range").innerHTML = value;
+}
+
+function updateBorderStyle() {
+  let rectangle = document.getElementById("rectangle");
+  rectangle.style.borderStyle = 
+  document.getElementById("border-style-select").value;
+}
+
+function updateBorderColor() {
+  let rectangle = document.getElementById("rectangle");
+  rectangle.style.borderColor = 
+  document.getElementById("border-color-color").value;
+}
+
+function copyCSSRectangleToClipboard() {
+  let range = document.getElementById("border-radius-range").value;
+  let topLeft = document.getElementById("border-top-left-radius-range").value;
+  let topRight = document.getElementById("border-top-right-radius-range").value;
+  let bottomLeft = document.getElementById("border-bottom-left-radius-range").value;
+  let bottomRight = document.getElementById("border-bottom-right-radius-range").value;
+  let width = document.getElementById("border-width-range").value;
+  let style = document.getElementById("border-style-select").value;
+  let color = document.getElementById("border-color-color").value;
+  let css = "{ ";
+  css += (range === "0") ? "" : "border-radius: " + range + "%; ";
+  css += (topLeft === "0") ? "" : "border-top-left-radius: " + topLeft + "%; ";
+  css += (topRight === "0") ? "" : "border-top-right-radius: " + topRight + "%; ";
+  css += (bottomLeft === "0") ? "" : "border-bottom-left-radius: " + bottomLeft + "%; ";
+  css += (bottomRight === "0") ? "" : "border-bottom-right-radius: " + bottomRight + "%; ";
+  css += "border-style: " + style + "; ";
+  css += "border-width: " + width + "px; ";
+  css += "border-color: " + color + ";";
+  css += " }";
+  navigator.clipboard.writeText(css);
+}
+</script>
+</body>
+</html>
