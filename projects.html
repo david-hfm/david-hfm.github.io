@@ -25,7 +25,7 @@
 <p>Insira um valor binário no campo:</p>
 <input id="decimal-value-text" class="sub-section__input--text" type="text" pattern="[01]+" style="display:block;">
 <p id="result-p" class="success" style="display:none;"></p>
-<input type="button" class="sub-section__input--button" value="Converter" onclick="convertBinaryToDecimal()">
+<input id="converter-button-decimal-value-text" type="button" class="sub-section__input--button" value="Converter">
 </section>
 
 <section>
@@ -36,33 +36,33 @@
 <div id="containerborder-radius-range">
   <div>
   <label for="border-radius-range">Quatro cantos: </label>
-  <input id="border-radius-range" type="range" min="0" max="50" value="0" onchange="updateBorderRadius(0)">
+  <input id="border-radius-range" type="range" min="0" max="50" value="0">
   <span id="value-span-border-radius-range">0%</span>
   </div>
   <div>
   <label for="border-top-left-radius-range">Top left: </label>
-  <input id="border-top-left-radius-range" type="range" min="0" max="100" value="0" onchange="updateBorderRadius(1)">
+  <input id="border-top-left-radius-range" type="range" min="0" max="100" value="0">
   <span id="value-span-border-top-left-radius-range">0%</span>
   </div>
   <div>
   <label for="border-top-right-radius-range">Top right: </label>
-  <input id="border-top-right-radius-range" type="range" min="0" max="100" value="0" onchange="updateBorderRadius(2)">
+  <input id="border-top-right-radius-range" type="range" min="0" max="100" value="0">
   <span id="value-span-border-top-right-radius-range">0%</span>
   </div>
   <div>
   <label for="border-bottom-left-radius-range">Bottom left: </label>
-  <input id="border-bottom-left-radius-range" type="range" min="0" max="100" value="0" onchange="updateBorderRadius(3)">
+  <input id="border-bottom-left-radius-range" type="range" min="0" max="100" value="0">
   <span id="value-span-border-bottom-left-radius-range">0%</span>
   </div>
   <div>
   <label for="border-bottom-right-radius-range">Bottom right: </label>
-  <input id="border-bottom-right-radius-range" type="range" min="0" max="100" value="0" onchange="updateBorderRadius(4)">
+  <input id="border-bottom-right-radius-range" type="range" min="0" max="100" value="0">
   <span id="value-span-border-bottom-right-radius-range">0%</span>
   </div>
 </div>
 <div>
 <label for="border-style-select">Border-style:</label>
-<select id="border-style-select" onchange="updateBorderStyle()">
+<select id="border-style-select">
   <option value="solid">solid</option>
   <option value="dotted">dotted</option>
   <option value="dashed">dashed</option>
@@ -77,14 +77,15 @@
 </div>
 <div>
 <label for="border-width-range">Border-width:</label>
-<input id="border-width-range" type="range" min="1" max="20" value="10" onchange="updateBorderWidth()">
+<input id="border-width-range" type="range" min="1" max="20" value="10">
 <span id="value-span-border-width-range">10px</span>
 </div>
 <div>
 <label for="border-color-color">Border-color:</label>
-<input id="border-color-color" type="color" value="#0FA3B1" onchange="updateBorderColor()">
+<input id="border-color-color" type="color" value="#0FA3B1">
 </div>
-<input class="sub-section__input--button" type="button" value="Copiar CSS" onclick="copyCSSRectangleToClipboard()">
+<input id="copy-button-rectangle" class="sub-section__input--button" type="button" value="Copiar CSS">
+<div id="copied-notification-div" class="sub-section-notification">CSS Copiado.</div>
 </section>
 
 </section>
@@ -97,6 +98,22 @@
 </footer>
 <script src="js/binary_to_decimal.js"></script>
 <script>
+window.onload = setEventListeners;
+
+function setEventListeners() {
+  document.getElementById("converter-button-decimal-value-text").addEventListener("click", convertBinaryToDecimal);
+  document.getElementById("border-radius-range").addEventListener("change", () => updateBorderRadius(0));
+  document.getElementById("border-top-left-radius-range").addEventListener("change", () => updateBorderRadius(1));
+  document.getElementById("border-top-right-radius-range").addEventListener("change", () => updateBorderRadius(2));
+  document.getElementById("border-bottom-left-radius-range").addEventListener("change", () => updateBorderRadius(3));
+  document.getElementById("border-bottom-right-radius-range").addEventListener("change", () => updateBorderRadius(4));
+  document.getElementById("border-style-select").addEventListener("change", updateBorderStyle);
+  document.getElementById("border-width-range").addEventListener("change", updateBorderWidth);
+  document.getElementById("border-color-color").addEventListener("change", updateBorderColor);
+  document.getElementById("copy-button-rectangle").addEventListener("click", copyCSSRectangleToClipboard);
+  document.getElementById("copy-button-rectangle").addEventListener("click", () => showNotification("copied-notification-div"));
+}
+
 function convertBinaryToDecimal() {
   let input = document.getElementById("decimal-value-text");
   let error = document.getElementById("error-message-p");
@@ -196,6 +213,14 @@ function copyCSSRectangleToClipboard() {
   css += "border-color: " + color + ";";
   css += " }";
   navigator.clipboard.writeText(css);
+}
+
+function showNotification(id) {
+  let notification = document.getElementById(id);
+  notification.style.display = "inline-block";
+  setTimeout(() => notification.classList.add("show"), 10);
+  setTimeout(() => notification.classList.remove("show"), 1000);
+  setTimeout(() => notification.style.display = "none", 1600);
 }
 </script>
 </body>

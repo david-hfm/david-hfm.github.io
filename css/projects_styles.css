@@ -34,3 +34,20 @@
   color: white;
   background-color: var(--custom-blue);
 }
+
+.sub-section-notification {
+  padding: 1vw;
+  margin-left: 1vw;
+  border-radius: 10%;
+  display: none;
+  color: white;
+  background-color: var(--custom-orange);
+  opacity: 0.0;
+  position: absolute;
+  left: 1vw;
+  transition: opacity 0.6s;
+}
+
+.sub-section-notification.show {
+  opacity: 1.0;
+}
