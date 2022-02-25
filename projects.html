@@ -23,9 +23,16 @@
 <h1 class="sub-section-title">Conversor de Binário para Decimal</h1>
 <p id="error-message-p" class="error" style="display:none;"></p>
 <p>Insira um valor binário no campo:</p>
-<input id="decimal-value-text" class="sub-section__input--text" type="text" pattern="[01]+" style="display:block;">
-<p id="result-p" class="success" style="display:none;"></p>
-<input id="converter-button-decimal-value-text" type="button" class="sub-section__input--button" value="Converter">
+<div>
+<label for="binary-value-text">Binário: </label>
+<input id="binary-value-text" class="sub-section__input--text" type="text" pattern="[01]+" required>
+</div>
+<div>
+<label for="decimal-value-text">Decimal: </label>
+<input id="decimal-value-text" class="sub-section__input--text" type="text" readonly>
+</div>
+<input id="converter-button-binary-value-text" type="button" class="sub-section__input--button" value="Converter">
+
 </section>
 
 <section>
@@ -101,7 +108,7 @@
 window.onload = setEventListeners;
 
 function setEventListeners() {
-  document.getElementById("converter-button-decimal-value-text").addEventListener("click", convertBinaryToDecimal);
+  document.getElementById("converter-button-binary-value-text").addEventListener("click", convertBinaryToDecimal);
   document.getElementById("border-radius-range").addEventListener("change", () => updateBorderRadius(0));
   document.getElementById("border-top-left-radius-range").addEventListener("change", () => updateBorderRadius(1));
   document.getElementById("border-top-right-radius-range").addEventListener("change", () => updateBorderRadius(2));
@@ -115,18 +122,17 @@ function setEventListeners() {
 }
 
 function convertBinaryToDecimal() {
-  let input = document.getElementById("decimal-value-text");
+  let input = document.getElementById("binary-value-text");
   let error = document.getElementById("error-message-p");
-  let result = document.getElementById("result-p");
+  let result = document.getElementById("decimal-value-text");
   if (!input.checkValidity()) {
     error.innerHTML = "Use apenas 1 e 0.";
     error.style.display = "block";
-    result.style.display = "none";
+    result.value = "";
   }
   else {
-    result.innerHTML = "Decimal: " + binaryToDecimal(input.value);
+    result.value = binaryToDecimal(input.value);
     error.style.display = "none";
-    result.style.display = "block";
   }
 }
 
