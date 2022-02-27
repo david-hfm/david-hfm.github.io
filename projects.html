@@ -288,6 +288,7 @@ function countTimerSecond() {
     document.getElementById("minutes-number").value = timerControl.timer.minutes.toString().padStart(2, "0");
     document.getElementById("seconds-number").value = timerControl.timer.seconds.toString().padStart(2, "0");
   } else {
+    new Audio("sounds/beeps.mp3").play();
     stopTimer();
   }
 }
