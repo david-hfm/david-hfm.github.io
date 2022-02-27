@@ -95,6 +95,18 @@
 <div id="copied-notification-div" class="sub-section-notification">CSS Copiado.</div>
 </section>
 
+<section class="timer">
+<h1 class="sub-section-title">Temporizador</h1>
+<p id="error-message-p-start-pause-button" class="error" style="display:none;"></p>
+<div>
+<input id="minutes-number" class="sub-section__input--text timer__input--number" type="number" min="0" value="00">
+<span class="timer__span">:</span>
+<input id="seconds-number" class="sub-section__input--text timer__input--number" type="number" min="0" max="59" value="00">
+</div>
+<input id="start-pause-button" class="sub-section__input--button" type="button" value="Iniciar">
+<input id="stop-button" class="sub-section__input--button" type="button" value="Parar">
+</section>
+
 </section>
 <footer class="main-footer">
 <span>David H. F. Moura</span>
@@ -103,11 +115,15 @@
 <a href="https://github.com/davidhfm">GitHub @davidhfm</a>
 </address>
 </footer>
+<script src="js/timer.js"></script>
 <script src="js/binary_to_decimal.js"></script>
 <script>
 window.onload = setEventListeners;
+const timerControl = { timer: new Timer(), intervalId: 0 };
 
 function setEventListeners() {
+  let minutesNumber = document.getElementById("minutes-number");
+  let secondsNumber = document.getElementById("seconds-number");
   document.getElementById("converter-button-binary-value-text").addEventListener("click", convertBinaryToDecimal);
   document.getElementById("border-radius-range").addEventListener("change", () => updateBorderRadius(0));
   document.getElementById("border-top-left-radius-range").addEventListener("change", () => updateBorderRadius(1));
@@ -119,6 +135,10 @@ function setEventListeners() {
   document.getElementById("border-color-color").addEventListener("change", updateBorderColor);
   document.getElementById("copy-button-rectangle").addEventListener("click", copyCSSRectangleToClipboard);
   document.getElementById("copy-button-rectangle").addEventListener("click", () => showNotification("copied-notification-div"));
+  minutesNumber.addEventListener("focus", () => minutesNumber.select());
+  secondsNumber.addEventListener("focus", () => secondsNumber.select());
+  document.getElementById("start-pause-button").addEventListener("click", startTimer);
+  document.getElementById("stop-button").addEventListener("click", stopTimer);
 }
 
 function convertBinaryToDecimal() {
@@ -227,6 +247,76 @@ function showNotification(id) {
   setTimeout(() => notification.classList.add("show"), 10);
   setTimeout(() => notification.classList.remove("show"), 1000);
   setTimeout(() => notification.style.display = "none", 1600);
+}
+
+function verifyTimer(minutesNumber, secondsNumber) {
+  let error = document.getElementById("error-message-p-start-pause-button");
+  error.style.display = "none";
+  if (!secondsNumber.checkValidity()) {
+    error.innerHTML = "Valor de segundos inválido";
+    error.style.display = "block";
+    return false;
+  }
+  if (!minutesNumber.checkValidity()) {
+    error.innerHTML = "Valor de minutos inválido";
+    error.style.display = "block";
+    return false;
+  }
+  if (minutesNumber.value == 0 && secondsNumber.value == 0) {
+    return false;
+  }
+  return true;
+}
+
+function startTimer() {
+  let minutesNumber = document.getElementById("minutes-number");
+  let secondsNumber = document.getElementById("seconds-number");
+  let button = document.getElementById("start-pause-button");
+  if (!verifyTimer(minutesNumber, secondsNumber)) {
+    return;
+  }
+  timerControl.timer.minutes = minutesNumber.value;
+  timerControl.timer.seconds = secondsNumber.value;
+  button.value = "Pausar";
+  button.removeEventListener("click", startTimer);
+  button.addEventListener("click", pauseTimer);
+  timerControl.intervalId = setInterval(() => countTimerSecond(), 1000);
+}
+
+function countTimerSecond() {
+  if (timerControl.timer.countSecond()) {
+    document.getElementById("minutes-number").value = timerControl.timer.minutes.toString().padStart(2, "0");
+    document.getElementById("seconds-number").value = timerControl.timer.seconds.toString().padStart(2, "0");
+  } else {
+    stopTimer();
+  }
+}
+
+function continueTimer() {
+  let button = document.getElementById("start-pause-button");
+  button.value = "Pausar";
+  button.removeEventListener("click", continueTimer);
+  button.addEventListener("click", pauseTimer);
+  timerControl.intervalId = setInterval(() => countTimerSecond(), 1000);
+}
+
+function pauseTimer() {
+  let button = document.getElementById("start-pause-button");
+  button.value = "Continuar";
+  button.removeEventListener("click", pauseTimer);
+  button.addEventListener("click", continueTimer);
+  clearInterval(timerControl.intervalId);
+}
+
+function stopTimer() {
+  let button = document.getElementById("start-pause-button");
+  document.getElementById("minutes-number").value = "00";
+  document.getElementById("seconds-number").value = "00";
+  button.value = "Iniciar";
+  button.removeEventListener("click", continueTimer);
+  button.removeEventListener("click", pauseTimer);
+  button.addEventListener("click", startTimer);
+  clearInterval(timerControl.intervalId);
 }
 </script>
 </body>

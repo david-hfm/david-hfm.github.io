@@ -45,3 +45,15 @@
 .sub-section-notification.show {
   opacity: 1.0;
 }
+
+.timer__input--number {
+  width: 2em;
+  font-size: 2em;
+  text-align: center;
+  color: var(--custom-orange);
+}
+
+.timer__span {
+  font-size: 2em;
+  color: var(--custom-orange);
+}
