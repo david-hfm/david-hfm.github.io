@@ -10,28 +10,28 @@
 
 <body>
 <header class="main-header">
-<img class="main-header-image" src="images/main_header_image.jpeg" alt="foto de perfil">
-<h1 class="main-header-title">David H. F. Moura</h1>
-<nav class="main-header-nav">
-<a href="index.html">Home</a>
-<a href="projects.html">Projetos</a>
+<img class="main-header__image" src="images/main_header_image.jpeg" alt="foto de perfil">
+<h1 class="main-header__title">David H. F. Moura</h1>
+<nav class="main-header__nav">
+<a class="main-header__link" href="index.html">Home</a>
+<a class="main-header__link" href="projects.html">Projetos</a>
 </nav>
 </header>
 <section class="main-section">
 
-<section>
+<section class="binary-to-decimal">
 <h1 class="sub-section-title">Conversor de Binário para Decimal</h1>
-<p id="error-message-p" class="error" style="display:none;"></p>
+<p id="error-message-binary-to-decimal" class="error error--invisible"></p>
 <p>Insira um valor binário no campo:</p>
 <div>
 <label for="binary-value-text">Binário: </label>
-<input id="binary-value-text" class="sub-section__input--text" type="text" pattern="[01]+" required>
+<input id="binary-value-text" class="text-input" type="text" pattern="[01]+" required>
 </div>
 <div>
 <label for="decimal-value-text">Decimal: </label>
-<input id="decimal-value-text" class="sub-section__input--text" type="text" readonly>
+<input id="decimal-value-text" class="text-input" type="text" readonly>
 </div>
-<input id="converter-button-binary-value-text" type="button" class="sub-section__input--button" value="Converter">
+<input id="converter-button-binary-to-decimal" type="button" class="button" value="Converter">
 
 </section>
 
@@ -39,32 +39,32 @@
 <h1 class="sub-section-title">Visualizador de Borda</h1>
 <div id="rectangle" class="rectangle">
 </div>
-<label for="containerborder-radius-range">Border-radius:</label>
-<div id="containerborder-radius-range">
+<label for="container-border-radius-range">Border-radius:</label>
+<div id="container-border-radius-range">
   <div>
   <label for="border-radius-range">Quatro cantos: </label>
   <input id="border-radius-range" type="range" min="0" max="50" value="0">
-  <span id="value-span-border-radius-range">0%</span>
+  <span id="value-border-radius-range">0%</span>
   </div>
   <div>
   <label for="border-top-left-radius-range">Top left: </label>
   <input id="border-top-left-radius-range" type="range" min="0" max="100" value="0">
-  <span id="value-span-border-top-left-radius-range">0%</span>
+  <span id="value-border-top-left-radius-range">0%</span>
   </div>
   <div>
   <label for="border-top-right-radius-range">Top right: </label>
   <input id="border-top-right-radius-range" type="range" min="0" max="100" value="0">
-  <span id="value-span-border-top-right-radius-range">0%</span>
+  <span id="value-border-top-right-radius-range">0%</span>
   </div>
   <div>
   <label for="border-bottom-left-radius-range">Bottom left: </label>
   <input id="border-bottom-left-radius-range" type="range" min="0" max="100" value="0">
-  <span id="value-span-border-bottom-left-radius-range">0%</span>
+  <span id="value-border-bottom-left-radius-range">0%</span>
   </div>
   <div>
   <label for="border-bottom-right-radius-range">Bottom right: </label>
   <input id="border-bottom-right-radius-range" type="range" min="0" max="100" value="0">
-  <span id="value-span-border-bottom-right-radius-range">0%</span>
+  <span id="value-border-bottom-right-radius-range">0%</span>
   </div>
 </div>
 <div>
@@ -85,34 +85,34 @@
 <div>
 <label for="border-width-range">Border-width:</label>
 <input id="border-width-range" type="range" min="1" max="20" value="10">
-<span id="value-span-border-width-range">10px</span>
+<span id="value-border-width-range">10px</span>
 </div>
 <div>
 <label for="border-color-color">Border-color:</label>
 <input id="border-color-color" type="color" value="#0FA3B1">
 </div>
-<input id="copy-button-rectangle" class="sub-section__input--button" type="button" value="Copiar CSS">
-<div id="copied-notification-div" class="sub-section-notification">CSS Copiado.</div>
+<input id="copy-button-rectangle" class="button" type="button" value="Copiar CSS">
+<div id="copied-notification-div" class="notification">CSS Copiado.</div>
 </section>
 
 <section class="timer">
 <h1 class="sub-section-title">Temporizador</h1>
-<p id="error-message-p-start-pause-button" class="error" style="display:none;"></p>
+<p id="error-message-timer" class="error error--invisible"></p>
 <div>
-<input id="minutes-number" class="sub-section__input--text timer__input--number" type="number" min="0" value="00">
+<input id="minutes-input" class="text-input timer__number-input" type="number" min="0" value="00">
 <span class="timer__span">:</span>
-<input id="seconds-number" class="sub-section__input--text timer__input--number" type="number" min="0" max="59" value="00">
+<input id="seconds-input" class="text-input timer__number-input" type="number" min="0" max="59" value="00">
 </div>
-<input id="start-pause-button" class="sub-section__input--button" type="button" value="Iniciar">
-<input id="stop-button" class="sub-section__input--button" type="button" value="Parar">
+<input id="start-pause-button" class="button" type="button" value="Iniciar">
+<input id="stop-button" class="button" type="button" value="Parar">
 </section>
 
 </section>
 <footer class="main-footer">
 <span>David H. F. Moura</span>
-<address class="main-footer-address">
-<a href="https://www.linkedin.com/in/davidhfmoura">LinkedIn @davidhfmoura</a> <br>
-<a href="https://github.com/davidhfm">GitHub @davidhfm</a>
+<address class="address">
+<a class="main-footer--link" href="https://www.linkedin.com/in/davidhfmoura">LinkedIn @davidhfmoura</a> <br>
+<a class="main-footer--link" href="https://github.com/davidhfm">GitHub @davidhfm</a>
 </address>
 </footer>
 <script src="js/timer.js"></script>
@@ -122,9 +122,9 @@ window.onload = setEventListeners;
 const timerControl = { timer: new Timer(), intervalId: 0 };
 
 function setEventListeners() {
-  let minutesNumber = document.getElementById("minutes-number");
-  let secondsNumber = document.getElementById("seconds-number");
-  document.getElementById("converter-button-binary-value-text").addEventListener("click", convertBinaryToDecimal);
+  let minutesInput = document.getElementById("minutes-input");
+  let secondsInput = document.getElementById("seconds-input");
+  document.getElementById("converter-button-binary-to-decimal").addEventListener("click", convertBinaryToDecimal);
   document.getElementById("border-radius-range").addEventListener("change", () => updateBorderRadius(0));
   document.getElementById("border-top-left-radius-range").addEventListener("change", () => updateBorderRadius(1));
   document.getElementById("border-top-right-radius-range").addEventListener("change", () => updateBorderRadius(2));
@@ -135,19 +135,19 @@ function setEventListeners() {
   document.getElementById("border-color-color").addEventListener("change", updateBorderColor);
   document.getElementById("copy-button-rectangle").addEventListener("click", copyCSSRectangleToClipboard);
   document.getElementById("copy-button-rectangle").addEventListener("click", () => showNotification("copied-notification-div"));
-  minutesNumber.addEventListener("focus", () => minutesNumber.select());
-  secondsNumber.addEventListener("focus", () => secondsNumber.select());
+  minutesInput.addEventListener("focus", () => minutesInput.select());
+  secondsInput.addEventListener("focus", () => secondsInput.select());
   document.getElementById("start-pause-button").addEventListener("click", startTimer);
   document.getElementById("stop-button").addEventListener("click", stopTimer);
 }
 
 function convertBinaryToDecimal() {
   let input = document.getElementById("binary-value-text");
-  let error = document.getElementById("error-message-p");
+  let error = document.getElementById("error-message-binary-to-decimal");
   let result = document.getElementById("decimal-value-text");
   if (!input.checkValidity()) {
     error.innerHTML = "Use apenas 1 e 0.";
-    error.style.display = "block";
+    error.classList.remove("error--invisible");
     result.value = "";
   }
   else {
@@ -163,28 +163,28 @@ function updateBorderRadius(position) {
     case 0:
       value = document.getElementById("border-radius-range").value + "%";
       rectangle.style.borderRadius = value;
-      document.getElementById("value-span-border-radius-range").innerHTML = value;
+      document.getElementById("value-border-radius-range").innerHTML = value;
       resetBorderRadiusRange();
       break;
     case 1:
       value = document.getElementById("border-top-left-radius-range").value + "%";
       rectangle.style.borderTopLeftRadius = value;
-      document.getElementById("value-span-border-top-left-radius-range").innerHTML = value;
+      document.getElementById("value-border-top-left-radius-range").innerHTML = value;
       break;
     case 2:
       value = document.getElementById("border-top-right-radius-range").value + "%";
       rectangle.style.borderTopRightRadius = value;
-      document.getElementById("value-span-border-top-right-radius-range").innerHTML = value;
+      document.getElementById("value-border-top-right-radius-range").innerHTML = value;
       break;
     case 3:
       value = document.getElementById("border-bottom-left-radius-range").value + "%";
       rectangle.style.borderBottomLeftRadius = value;
-      document.getElementById("value-span-border-bottom-left-radius-range").innerHTML = value;
+      document.getElementById("value-border-bottom-left-radius-range").innerHTML = value;
       break;
     case 4:
       value = document.getElementById("border-bottom-right-radius-range").value + "%";
       rectangle.style.borderBottomRightRadius = value;
-      document.getElementById("value-span-border-bottom-right-radius-range").innerHTML = value;
+      document.getElementById("value-border-bottom-right-radius-range").innerHTML = value;
       break;
   }
 }
@@ -194,17 +194,17 @@ function resetBorderRadiusRange() {
   document.getElementById("border-top-right-radius-range").value = "0";
   document.getElementById("border-bottom-left-radius-range").value = "0";
   document.getElementById("border-bottom-right-radius-range").value = "0";
-  document.getElementById("value-span-border-top-left-radius-range").innerHTML = "0%";
-  document.getElementById("value-span-border-top-right-radius-range").innerHTML = "0%";
-  document.getElementById("value-span-border-bottom-left-radius-range").innerHTML = "0%";
-  document.getElementById("value-span-border-bottom-right-radius-range").innerHTML = "0%";
+  document.getElementById("value-border-top-left-radius-range").innerHTML = "0%";
+  document.getElementById("value-border-top-right-radius-range").innerHTML = "0%";
+  document.getElementById("value-border-bottom-left-radius-range").innerHTML = "0%";
+  document.getElementById("value-border-bottom-right-radius-range").innerHTML = "0%";
 }
 
 function updateBorderWidth() {
   let value = document.getElementById("border-width-range").value + "px";
   let rectangle = document.getElementById("rectangle");
   rectangle.style.borderWidth = value;
-  document.getElementById("value-span-border-width-range").innerHTML = value;
+  document.getElementById("value-border-width-range").innerHTML = value;
 }
 
 function updateBorderStyle() {
@@ -244,39 +244,39 @@ function copyCSSRectangleToClipboard() {
 function showNotification(id) {
   let notification = document.getElementById(id);
   notification.style.display = "inline-block";
-  setTimeout(() => notification.classList.add("show"), 10);
-  setTimeout(() => notification.classList.remove("show"), 1000);
+  setTimeout(() => notification.classList.add("notification--show"), 10);
+  setTimeout(() => notification.classList.remove("notification--show"), 1000);
   setTimeout(() => notification.style.display = "none", 1600);
 }
 
-function verifyTimer(minutesNumber, secondsNumber) {
-  let error = document.getElementById("error-message-p-start-pause-button");
+function verifyTimer(minutesInput, secondsInput) {
+  let error = document.getElementById("error-message-timer");
   error.style.display = "none";
-  if (!secondsNumber.checkValidity()) {
+  if (!secondsInput.checkValidity()) {
     error.innerHTML = "Valor de segundos inválido";
     error.style.display = "block";
     return false;
   }
-  if (!minutesNumber.checkValidity()) {
+  if (!minutesInput.checkValidity()) {
     error.innerHTML = "Valor de minutos inválido";
     error.style.display = "block";
     return false;
   }
-  if (minutesNumber.value == 0 && secondsNumber.value == 0) {
+  if (minutesInput.value == 0 && secondsInput.value == 0) {
     return false;
   }
   return true;
 }
 
 function startTimer() {
-  let minutesNumber = document.getElementById("minutes-number");
-  let secondsNumber = document.getElementById("seconds-number");
+  let minutesInput = document.getElementById("minutes-input");
+  let secondsInput = document.getElementById("seconds-input");
   let button = document.getElementById("start-pause-button");
-  if (!verifyTimer(minutesNumber, secondsNumber)) {
+  if (!verifyTimer(minutesInput, secondsInput)) {
     return;
   }
-  timerControl.timer.minutes = minutesNumber.value;
-  timerControl.timer.seconds = secondsNumber.value;
+  timerControl.timer.minutes = minutesInput.value;
+  timerControl.timer.seconds = secondsInput.value;
   button.value = "Pausar";
   button.removeEventListener("click", startTimer);
   button.addEventListener("click", pauseTimer);
@@ -285,8 +285,8 @@ function startTimer() {
 
 function countTimerSecond() {
   if (timerControl.timer.countSecond()) {
-    document.getElementById("minutes-number").value = timerControl.timer.minutes.toString().padStart(2, "0");
-    document.getElementById("seconds-number").value = timerControl.timer.seconds.toString().padStart(2, "0");
+    document.getElementById("minutes-input").value = timerControl.timer.minutes.toString().padStart(2, "0");
+    document.getElementById("seconds-input").value = timerControl.timer.seconds.toString().padStart(2, "0");
   } else {
     new Audio("sounds/beeps.mp3").play();
     stopTimer();
@@ -311,8 +311,8 @@ function pauseTimer() {
 
 function stopTimer() {
   let button = document.getElementById("start-pause-button");
-  document.getElementById("minutes-number").value = "00";
-  document.getElementById("seconds-number").value = "00";
+  document.getElementById("minutes-input").value = "00";
+  document.getElementById("seconds-input").value = "00";
   button.value = "Iniciar";
   button.removeEventListener("click", continueTimer);
   button.removeEventListener("click", pauseTimer);
